@@ -4,7 +4,10 @@ import {SIZE_ICON} from './../../../constants/weathers';
 
 const icons = {
   sunny: "day-sunny",
-  fog: "day-fog"
+  fog: "day-fog",
+  thunderstorm: "day-thunderstorm",
+  cloud: "day-cloud",
+  windy: "day-windy"
 }
 
 const getWeatherIcon = weatherState => {

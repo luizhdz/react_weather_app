@@ -3,40 +3,26 @@ import WeatherData from './WeatherData';
 import Location from './Location';
 import './style.css';
 import { SUNNY, API_WEATHER } from './../../constants/weathers';
-
-const data = {
-  temperature: 15,
-  weatherState: SUNNY,
-  humidity: 30,
-  wind: "10 m/s"
-}
-
+import Convert from 'convert-units';
+import transformWeather from './../../services/transformWeather'
+import CircularProgress from '@material-ui/core/CircularProgress'
 class WeatherLocation extends Component {
   constructor(){
     super();
     this.state = {
       city: "Mexico",
-      data: data
+      data: null
     }
+    console.log("Constructor");
   }
-  getWeatherState = weatherData => {
-    return SUNNY;
+  componentDidMount() {
+    console.log("componentDidMount");
+    this.handleUpdateClick();
   }
-  
-  getData = weatherData => {
-      const {humidity, temp} = weatherData.main;
-      const {speed} = weatherData.wind;
-      const weatherState = this.getWeatherState(weatherData);
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate");
+  }
 
-      const data = {
-        temperature: temp,
-        weatherState,
-        humidity,
-        wind: `${speed} m/s`,
-      }
-
-      return data;
-  }
 
   handleUpdateClick = () => {
     fetch(API_WEATHER)
@@ -44,22 +30,22 @@ class WeatherLocation extends Component {
       return resp.json();
     })
     .then(data => {
-      const newData = this.getData(data);
-      console.log(newData);
-      this.setState({
-        data : newData
-      });
+      const newData = transformWeather(data);
+      // debugger;
+      this.setState({ data : newData });
     })
     .catch(error =>{
       console.log(error);
     });
   }
+
   render(){
+    console.log("RENDER");
     const {city, data} = this.state
     return (
       <div className="weatherLocationCont">
         <Location city={city}></Location>
-        <WeatherData data={data} />
+        {data ? <WeatherData data={data} /> : <CircularProgress size={50} />}
         <button onClick={this.handleUpdateClick} >Actualizar</button>
       </div>
     )

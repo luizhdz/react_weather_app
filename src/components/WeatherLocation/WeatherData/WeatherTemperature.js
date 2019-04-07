@@ -5,10 +5,10 @@ import { SIZE_ICON, SUN, CLOUD, RAIN, SNOW, THUNDER, DRIZZLE } from './../../../
 const icons = {
   [SUN]: "day-sunny",
   [CLOUD]: "cloud",
-  [RAIN]: "rain",
-  [SNOW]: "snow",
-  [THUNDER]: "day-thunder",
-  [DRIZZLE]: "day-drizzle",
+  [RAIN]: "day-rain",
+  [SNOW]: "day-snow",
+  [THUNDER]: "thunderstorm",
+  [DRIZZLE]: "hail",
 }
 
 const getWeatherIcon = weatherState => {

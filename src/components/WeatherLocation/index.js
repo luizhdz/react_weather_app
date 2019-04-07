@@ -14,14 +14,11 @@ class WeatherLocation extends Component {
       city,
       data: null
     }
-    console.log("Constructor");
   }
   componentDidMount() {
-    console.log("componentDidMount");
     this.handleUpdateClick();
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate");
   }
 
   handleUpdateClick = () => {
@@ -40,13 +37,11 @@ class WeatherLocation extends Component {
   }
 
   render(){
-    console.log("RENDER");
     const {city, data} = this.state
     return (
       <div className="weatherLocationCont">
         <Location city={city}></Location>
         {data ? <WeatherData data={data} /> : <CircularProgress size={50} />}
-        <button onClick={this.handleUpdateClick} >Actualizar</button>
       </div>
     )
   }

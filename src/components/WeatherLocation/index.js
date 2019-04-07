@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import WeatherData from './WeatherData';
 import Location from './Location';
 import './style.css';
-import { SUNNY, CLOUD, WINDY } from './../../constants/weathers';
+import { SUNNY, API_WEATHER } from './../../constants/weathers';
 
 const data = {
   temperature: 15,
@@ -11,12 +11,6 @@ const data = {
   wind: "10 m/s"
 }
 
-const data2 = {
-  temperature: 32,
-  weatherState: WINDY,
-  humidity: 60,
-  wind: "43 m/s"
-}
 class WeatherLocation extends Component {
   constructor(){
     super();
@@ -26,11 +20,8 @@ class WeatherLocation extends Component {
     }
   }
   handleUpdateClick = () => {
+    fetch(API_WEATHER);    
     console.log("Actualizado !")
-    this.setState( {
-      city: "San Luis P.",
-      data: data2
-    })
   }
   render(){
     const {city, data} = this.state

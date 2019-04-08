@@ -3,9 +3,10 @@ import WeatherData from './WeatherData';
 import PropTypes from 'prop-types';
 import Location from './Location';
 import './style.css';
+import {CircularProgress} from '@material-ui/core'
 import transformWeather from './../../services/transformWeather'
 import getUrlWeatherByCity from './../../services/getUrlWeatherByCity'
-import CircularProgress from '@material-ui/core/CircularProgress'
+
 class WeatherLocation extends Component {
   constructor(props){
     super(props);
@@ -39,10 +40,12 @@ class WeatherLocation extends Component {
   render(){
     const {city, data} = this.state
     return (
-      <div className="weatherLocationCont">
-        <Location city={city}></Location>
-        {data ? <WeatherData data={data} /> : <CircularProgress size={50} />}
-      </div>
+
+        <div className="weatherLocationCont">
+          <Location city={city}></Location>
+          {data ? <WeatherData data={data} /> : <CircularProgress size={50} />}
+        </div>
+
     )
   }
 }
